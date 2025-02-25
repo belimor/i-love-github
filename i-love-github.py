@@ -19,9 +19,10 @@ def commit_on_dates(dates):
         with open("dummy.txt", "a") as f:
             f.write(f"Commit for {date_str}\n")
         subprocess.run(["git", "add", "dummy.txt"])
-        subprocess.run(["git", "commit", "--date", date_str, "-m", f"Commit on {date_str}"])
+        subprocess.run(["git", "commit", "--date", f"{date_str}  10:00:00 -0700", "-m", f"Commit on {date_str}"])
         # debug mode:
-        #print("git", "commit", "--date", date_str, "-m", f"Commit on {date_str}")
+        #print("git", "commit", "--date", f"{date_str} 10:00:00 -0700", "-m", f"Commit on {date_str}")
+        #input()
 
 def main():
     username, email = get_user_input()
@@ -43,6 +44,8 @@ def main():
     for x, row in enumerate(matrix):
         for y, char in enumerate(row):
             if char == "#":
+                #print(start_date + timedelta(days=x + y * 7))
+                #input()
                 commit_dates.append(start_date + timedelta(days=x + y * 7))
     
     commit_on_dates(commit_dates)
